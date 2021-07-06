@@ -22,9 +22,15 @@ class AccountManager extends Component {
   }
 
   getdata = async () => {
-    const data1 = await axios.get(`/api/user`);
-    const data2 = await axios.get(`/api/project`);
-    const local = await axios.get(`/api/local`);
+    const data1 = await axios.get(
+      `https://bds-web-server.herokuapp.com/api/user`
+    );
+    const data2 = await axios.get(
+      `https://bds-web-server.herokuapp.com/api/project`
+    );
+    const local = await axios.get(
+      `https://bds-web-server.herokuapp.com/api/local`
+    );
     this.setState({
       users: data1.data.users,
       projects: data2.data.projects,
@@ -48,14 +54,17 @@ class AccountManager extends Component {
   };
 
   handleDelete = async (_id) => {
-    await axios.post(`/api/project/delete`, {
-      id: _id,
-    });
+    await axios.post(
+      `https://bds-web-server.herokuapp.com/api/project/delete`,
+      {
+        id: _id,
+      }
+    );
     this.getdata();
   };
 
   handleDeleteUser = async (_id) => {
-    await axios.post(`/api/user/delete`, {
+    await axios.post(`https://bds-web-server.herokuapp.com/api/user/delete`, {
       id: _id,
     });
     this.getdata();

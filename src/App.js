@@ -27,14 +27,18 @@ class App extends Component {
   }
 
   getProjects = async () => {
-    const { data } = await axios.get(`/api/project`);
+    const { data } = await axios.get(
+      `https://bds-web-server.herokuapp.com/api/project`
+    );
     this.setState({
       projects: data.projects,
     });
   };
 
   getLocal = async () => {
-    const local = await axios.get(`/api/local`);
+    const local = await axios.get(
+      `https://bds-web-server.herokuapp.com/api/local`
+    );
     this.setState({
       local: local.data,
     });

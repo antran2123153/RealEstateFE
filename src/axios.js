@@ -1,5 +1,7 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://bds-web-server.herokuapp.com";
+// const instance = axios.create({
+//   baseURL: "https://bds-web-server.herokuapp.com",
+// });
 
 export default instance;
