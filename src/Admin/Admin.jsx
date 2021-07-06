@@ -62,7 +62,7 @@ class AccountManager extends Component {
   };
 
   render() {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token") === null) {
       return <Redirect to="/admin/login" />;
     }
     const { projects, local, users } = this.state;
