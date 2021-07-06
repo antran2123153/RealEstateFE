@@ -20,10 +20,27 @@ class Contract extends Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
+    await axios.post(`/api/user/add`, {
+      name: this.state.fullname,
+      phonenumber: this.state.phonenumber,
+      text:
+        this.state.birthday +
+        " - " +
+        this.state.address +
+        " - " +
+        this.state.email,
+    });
     alert("Gửi thành công");
-    this.setState({ isSubmit: true });
+    this.setState({
+      fullname: "",
+      phonenumber: "",
+      birthday: "",
+      address: "",
+      email: "",
+      isSubmit: true,
+    });
   };
 
   render() {

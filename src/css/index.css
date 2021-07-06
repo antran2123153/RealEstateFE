@@ -99,6 +99,9 @@ a:hover {
   background-color: #f8f9fa;
   padding-top: 40px;
 }
+.call-form {
+  display: none;
+}
 
 .footer .icon {
   display: flex;
@@ -628,7 +631,7 @@ footer .container .noi-dung.about p {
   margin-left: 10%;
 }
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 800px) {
   .gallery {
     display: inline-block;
     width: 95%;
@@ -689,6 +692,9 @@ footer .container .noi-dung.about p {
   }
   .body-project-detail {
     flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
   .body-project-detail .list-group {
     display: none;
@@ -710,10 +716,17 @@ footer .container .noi-dung.about p {
   .project-detail-header {
     width: 100%;
     padding: 10px;
-    margin: 30px 10px;
+    margin: 30px auto;
   }
   .project-detail-header h5 {
     font-size: 11pt;
+  }
+  .content-project-data h3 {
+    margin: 20px;
+  }
+  .content-project-data {
+    padding: 10px 20px;
+    margin: 10px;
   }
   .project-detail-header h6 {
     margin-top: 10px;
@@ -723,5 +736,56 @@ footer .container .noi-dung.about p {
     width: 90%;
     padding: 10px;
     height: auto;
+  }
+  .call-form {
+    padding: 3px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 10;
+    background-color: #6c757d;
+    font-size: 20pt;
+    color: white;
+  }
+  .call-form a {
+    color: white;
+  }
+  .call-form input {
+    width: 60%;
+    padding: 10px 20px;
+    font-size: 13pt;
+    margin: 2px;
+    border-radius: 5px;
+    border: none;
+  }
+  .icon-call {
+    font-size: 25pt;
+    margin: auto;
+  }
+  .navbar-item {
+    margin: 6px 0;
+  }
+
+  .contract-form .card {
+    padding: 10px;
+  }
+  footer .container .noi-dung.about h2:before,
+  .links h2::before,
+  .contact h2::before {
+    display: none;
+  }
+  .social-icon {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+  }
+  .noi-dung dl,
+  ol,
+  ul {
+    padding: 0;
+    margin: 0;
   }
 }
