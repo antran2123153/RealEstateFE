@@ -1,13 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://bds-web-server.herokuapp.com",
 });
-
-// instance.interceptors.request.use((config) => {
-//   const token = localStorage.getItem("token");
-//   config.headers["token"] = token;
-//   return config;
-// });
 
 export default instance;
