@@ -25,7 +25,7 @@ class Login extends Component {
     else if (password.length === 0) alert("Bạn phải nhập mật khẩu!");
     else {
       axios
-        .post(`https://bds-web-server.herokuapp.com/api/admin/login`, {
+        .post(`/api/admin/login`, {
           username,
           password,
         })
