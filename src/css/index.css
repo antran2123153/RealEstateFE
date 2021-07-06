@@ -101,6 +101,7 @@ a:hover {
 }
 .call-form {
   display: none;
+  visibility: hidden;
 }
 
 .footer .icon {
@@ -738,6 +739,7 @@ footer .container .noi-dung.about p {
     height: auto;
   }
   .call-form {
+    visibility: visible;
     padding: 3px;
     position: fixed;
     bottom: 0;
@@ -745,7 +747,7 @@ footer .container .noi-dung.about p {
     width: 100%;
     height: 50px;
     z-index: 10;
-    background-color: #6c757d;
+    background-color: #202020;
     font-size: 20pt;
     color: white;
   }
