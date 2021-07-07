@@ -135,7 +135,7 @@ a:hover {
 }
 
 .des-content {
-  height: 30%;
+  height: 19%;
   font-size: 11pt;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -661,6 +661,10 @@ footer .container .noi-dung.about p {
   .des-content {
     display: none;
   }
+  /* .contract-form-project {
+    position: fixed;
+    display: flex;
+  } */
   footer .container .noi-dung.about {
     text-align: center;
     width: 100%;
@@ -698,7 +702,13 @@ footer .container .noi-dung.about p {
     padding: 0;
   }
   .body-project-detail .list-group {
-    display: none;
+    position: fixed;
+    left: -20px;
+    top: 500px;
+    font-size: 7pt;
+    width: 79px;
+    padding: 0;
+    z-index: 12;
   }
   .content-project-data img {
     width: 100%;
@@ -747,7 +757,7 @@ footer .container .noi-dung.about p {
     width: 100%;
     height: 50px;
     z-index: 10;
-    background-color: #202020;
+    background-color: #ffc107;
     font-size: 20pt;
     color: white;
   }

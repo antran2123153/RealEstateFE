@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { FcPositiveDynamic, FcLandscape } from "react-icons/fc";
+import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 export default function Gallery(props) {
@@ -20,13 +20,24 @@ export default function Gallery(props) {
             <h4>{project.name}</h4>
           </Link>
           <span>
-            <FcPositiveDynamic /> <b>Giá : {project.price} triệu VNĐ</b> -- Ngày
-            ra mắt : {project.date}
+            <FcLandscape /> <b>Địa chỉ :</b> {project.address}
           </span>
           <br />
           <span>
-            <FcLandscape /> Diện tích : {project.area} m2 -- Địa chỉ :{" "}
-            {project.address}
+            <FcCurrencyExchange />{" "}
+            <b>
+              Giá :{" "}
+              <span style={{ color: "#dc3545" }}>
+                {project.price} triệu VNĐ
+              </span>
+            </b>
+          </span>
+          <br />
+          <span>
+            <b>
+              <FcHome /> Diện tích :
+            </b>{" "}
+            {project.area} mét vuông
           </span>
           {index === 0 && <p className="des-content">{project.descriptions}</p>}
         </div>

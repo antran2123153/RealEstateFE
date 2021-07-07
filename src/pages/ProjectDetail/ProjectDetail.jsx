@@ -23,7 +23,7 @@ function MenuSide() {
         Mặt bằng
       </ListGroup.Item>
       <ListGroup.Item action href="#policy">
-        Chính sách bán hàng
+        Chính sách
       </ListGroup.Item>
     </ListGroup>
   );

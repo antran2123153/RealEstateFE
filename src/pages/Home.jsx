@@ -6,7 +6,7 @@ export default function Home(props) {
   return (
     <>
       <Gallery projects={hot} />
-      <Projects projects={props.projects} imgs={props.local.rightSideImg} />
+      <Projects projects={props.projects} local={props.local} />
     </>
   );
 }

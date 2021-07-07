@@ -1,10 +1,10 @@
 import { Container, Button } from "react-bootstrap";
-import { FcPositiveDynamic, FcLandscape, FcCallTransfer } from "react-icons/fc";
+import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 export default function Projects(props) {
   const projects = props.projects.slice(0, 5);
-  const imgs = props.imgs;
+  const imgs = props.local.rightSideImg;
   const viewProjects = projects.map((project) => {
     return (
       <div className="card" key={project._id}>
@@ -14,18 +14,37 @@ export default function Projects(props) {
             <h5>{project.name}</h5>
           </Link>
           <span>
-            <FcPositiveDynamic /> <b>Giá : {project.price} triệu VNĐ</b> - Ngày
-            ra mắt : {project.date}
+            <FcLandscape /> <b>Địa chỉ :</b> {project.address}
           </span>
           <br />
           <span>
-            <FcLandscape /> Diện tích : {project.area}m2 - Địa chỉ :{" "}
-            {project.address}
+            <FcCurrencyExchange />{" "}
+            <b>
+              Giá :{" "}
+              <span style={{ color: "#dc3545" }}>
+                {project.price} triệu VNĐ
+              </span>
+            </b>
+          </span>
+          <br />
+          <span>
+            <b>
+              <FcHome /> Diện tích :
+            </b>{" "}
+            {project.area} mét vuông
           </span>
           <p className="des-content">{project.descriptions}</p>
           <br />
-          <Button className="outline-info">
-            <FcCallTransfer /> Liên hệ để biết thêm chi tiết
+          <Button className="outline-info" variant="warning">
+            <Link to={"/project/" + project._id}>Chi tiết</Link>
+          </Button>{" "}
+          <Button className="outline-info" variant="danger">
+            <a
+              href={"tel:" + props.local.phonenumber1}
+              style={{ color: "white" }}
+            >
+              Gọi ngay
+            </a>
           </Button>
         </div>
       </div>
