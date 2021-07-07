@@ -48,8 +48,8 @@ export default function ProjectDetail(props) {
             <h5>{project.address}</h5>
           </div>
           <div>
-            <h6>Giá bán: {project.price} Triệu VNĐ</h6>
-            <h6>Diện tích mặt bằng : {project.area} mét vuông</h6>
+            <h6 style={{ color: "red" }}>Giá bán: {project.price} Triệu VNĐ</h6>
+            <h6>Diện tích : {project.area} mét vuông</h6>
           </div>
         </div>
         <div className="d-flex justify-content-between body-project-detail">
