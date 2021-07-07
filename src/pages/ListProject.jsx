@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import { Container, Button, FormControl, InputGroup } from "react-bootstrap";
-import {
-  FcPositiveDynamic,
-  FcLandscape,
-  FcCallTransfer,
-  FcSearch,
-} from "react-icons/fc";
+import { FcPositiveDynamic, FcLandscape, FcSearch } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 class ListProject extends Component {
@@ -56,10 +51,16 @@ class ListProject extends Component {
             </span>
             <p className="des-content">{project.descriptions}</p>
             <br />
-            <Button variant="outline-info">
-              <Link to="/contract">
-                <FcCallTransfer /> Liên hệ để biết thêm chi tiết
-              </Link>
+            <Button className="outline-info" variant="warning">
+              <Link to={"/project/" + project._id}>Chi tiết</Link>
+            </Button>{" "}
+            <Button className="outline-info" variant="danger">
+              <a
+                href={"tel:" + this.props.local.phonenumber1}
+                style={{ color: "white" }}
+              >
+                Gọi ngay
+              </a>
             </Button>
           </div>
         </div>

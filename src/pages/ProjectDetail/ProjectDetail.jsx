@@ -37,6 +37,7 @@ export default function ProjectDetail(props) {
   return (
     <>
       <div className="project-detail">
+        <MenuSide />
         <SlideShow
           imgs={project.introImg}
           maps={project.maps}
@@ -52,6 +53,7 @@ export default function ProjectDetail(props) {
             <h6>Diện tích : {project.area} mét vuông</h6>
           </div>
         </div>
+
         <div className="d-flex justify-content-between body-project-detail">
           <div className="col-2">
             <MenuSide />

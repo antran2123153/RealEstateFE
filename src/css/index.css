@@ -656,15 +656,12 @@ footer .container .noi-dung.about p {
     width: 100%;
   }
   .list-project button {
-    display: none;
+    padding: 4px 10px;
+    font-size: 9pt;
   }
   .des-content {
     display: none;
   }
-  /* .contract-form-project {
-    position: fixed;
-    display: flex;
-  } */
   footer .container .noi-dung.about {
     text-align: center;
     width: 100%;
@@ -702,9 +699,13 @@ footer .container .noi-dung.about p {
     padding: 0;
   }
   .body-project-detail .list-group {
-    position: fixed;
-    left: -20px;
-    top: 500px;
+    display: none;
+  }
+  .list-group {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    top: 100px;
     font-size: 7pt;
     width: 79px;
     padding: 0;
