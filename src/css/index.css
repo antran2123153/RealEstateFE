@@ -135,7 +135,7 @@ a:hover {
 }
 
 .des-content {
-  height: 19%;
+  height: 20%;
   font-size: 11pt;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -155,63 +155,6 @@ a:hover {
 .detailviewmore {
   margin: 10px auto;
   display: flex;
-}
-
-.gallery-footer {
-  display: grid;
-  padding: 20px;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 5vw);
-  grid-gap: 1.5rem;
-}
-
-.gallery__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.gallery__item--1 {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 6;
-}
-
-.gallery__item--2 {
-  grid-column-start: 3;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 6;
-}
-
-.gallery__item--3 {
-  grid-column-start: 5;
-  grid-column-end: 9;
-  grid-row-start: 1;
-  grid-row-end: 6;
-}
-
-.gallery__item--4 {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 6;
-  grid-row-end: 9;
-}
-
-.gallery__item--5 {
-  grid-column-start: 3;
-  grid-column-end: 7;
-  grid-row-start: 6;
-  grid-row-end: 9;
-}
-
-.gallery__item--6 {
-  grid-column-start: 7;
-  grid-column-end: 9;
-  grid-row-start: 6;
-  grid-row-end: 9;
 }
 
 .list-project-page {
@@ -245,7 +188,7 @@ a:hover {
   margin: 150px auto 50px auto;
   padding: 50px;
   width: 50%;
-  height: 700px;
+  height: 620px;
   box-shadow: 5px 10px 18px #888888;
 }
 
@@ -451,6 +394,12 @@ footer .container .noi-dung.about p {
   padding: 8px 4px;
 }
 
+.pagination {
+  display: flex;
+  margin: 30px 0;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   footer {
     padding: 40px;
@@ -632,6 +581,36 @@ footer .container .noi-dung.about p {
   margin-left: 10%;
 }
 
+.menu-project-body {
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  border: none;
+}
+.project-mini {
+  display: inline-flex;
+  width: 90%;
+  margin: 20px 5%;
+  height: auto;
+}
+
+.project-mini .card {
+  flex-direction: column;
+  width: 20%;
+  height: auto;
+}
+.project-mini .card img {
+  height: 200px;
+  width: 100%;
+}
+.project-mini .card p {
+  height: 70px;
+}
+.mini-h2 {
+  text-align: center;
+  padding-top: 20px;
+}
 @media all and (max-width: 800px) {
   .gallery {
     display: inline-block;

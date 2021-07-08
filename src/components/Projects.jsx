@@ -1,6 +1,7 @@
 import { Container, Button } from "react-bootstrap";
 import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { configData } from "../untils/functions";
 
 export default function Projects(props) {
   const projects = props.projects.slice(0, 5);
@@ -10,7 +11,7 @@ export default function Projects(props) {
       <div className="card" key={project._id}>
         <img src={project.mainImg} alt={project.name} />
         <div className="card-body">
-          <Link to={"/project/" + project._id}>
+          <Link to={"/project/" + project.name}>
             <h5>{project.name}</h5>
           </Link>
           <span>
@@ -21,9 +22,7 @@ export default function Projects(props) {
             <FcCurrencyExchange />{" "}
             <b>
               Giá :{" "}
-              <span style={{ color: "#dc3545" }}>
-                {project.price} triệu VNĐ
-              </span>
+              <span style={{ color: "#dc3545" }}>{project.price} VNĐ</span>
             </b>
           </span>
           <br />
@@ -31,12 +30,12 @@ export default function Projects(props) {
             <b>
               <FcHome /> Diện tích :
             </b>{" "}
-            {project.area} mét vuông
+            {project.area} m <sup>2</sup>
           </span>
-          <p className="des-content">{project.descriptions}</p>
+          <p className="des-content">{configData(project.body[0])[2]}</p>
           <br />
           <Button className="outline-info" variant="warning">
-            <Link to={"/project/" + project._id}>Chi tiết</Link>
+            <Link to={"/project/" + project.name}>Chi tiết</Link>
           </Button>{" "}
           <Button className="outline-info" variant="danger">
             <a

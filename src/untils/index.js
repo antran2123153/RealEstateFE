@@ -1,5 +1,4 @@
 import Navigation from "../components/Navigation";
-import FooterGallery from "../components/FooterGallery";
 import Footer from "../components/Footer";
 import Home from "../pages/Home";
 import ListProject from "../pages/ListProject";
@@ -13,7 +12,6 @@ export {
   Home,
   Navigation,
   Footer,
-  FooterGallery,
   ListProject,
   Contract,
   ProjectDetail,

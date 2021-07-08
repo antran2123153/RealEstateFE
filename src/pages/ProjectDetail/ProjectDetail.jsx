@@ -2,94 +2,115 @@ import { useLocation } from "react-router-dom";
 import SlideShow from "./SlideShow";
 import ContractForm from "./ContractForm";
 import CallForm from "./CallForm";
-import { ListGroup } from "react-bootstrap";
-
-function MenuSide() {
-  return (
-    <ListGroup
-      className="contract-form-project mt-5"
-      defaultActiveKey="#descriptions"
-    >
-      <ListGroup.Item action href="#descriptions">
-        Tổng quan
-      </ListGroup.Item>
-      <ListGroup.Item action href="#location">
-        Vị trí
-      </ListGroup.Item>
-      <ListGroup.Item action href="#utilities">
-        Tiện ích
-      </ListGroup.Item>
-      <ListGroup.Item action href="#ground">
-        Mặt bằng
-      </ListGroup.Item>
-      <ListGroup.Item action href="#policy">
-        Chính sách
-      </ListGroup.Item>
-    </ListGroup>
-  );
-}
+import { ListGroup, Card, CardDeck } from "react-bootstrap";
+import { configData } from "../../untils/functions";
+import { Link } from "react-router-dom";
+import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 
 export default function ProjectDetail(props) {
   const location = useLocation();
-  const id = location.pathname.slice(9);
-  const project = props.projects.find((item) => item._id === id);
+  const name = location.pathname.slice(9);
+  const project = props.projects.find((item) => item.name === name);
+
+  let viewBody = project.body.map((bodyItem) => {
+    const body = configData(bodyItem);
+    let viewBodyItem = body.map((item, index) => {
+      if (index === 0) {
+        return <></>;
+      } else if (index === 1) {
+        return <h3 key={index}>{item}</h3>;
+      } else if (item.substring(0, 4) === "http") {
+        return <img key={index} src={item} alt="" />;
+      } else {
+        return <p key={index}>{item}</p>;
+      }
+    });
+    return (
+      <div className="content-project-data" id={body[0]}>
+        {viewBodyItem}
+      </div>
+    );
+  });
+
+  let menuList = project.body.map((bodyItem, index) => {
+    const body = configData(bodyItem);
+    return (
+      <ListGroup.Item key={index} action href={"#" + body[0]}>
+        {body[1]}
+      </ListGroup.Item>
+    );
+  });
+
+  let miniProject = props.projects.slice(0, 4).map((project, index) => {
+    return (
+      <Card>
+        <Card.Img variant="top" src={project.mainImg} />
+        <Card.Body>
+          <Link to={"/project/" + project.name}>
+            <h4>{project.name}</h4>
+          </Link>
+          <span>
+            <FcLandscape /> <b>Địa chỉ :</b> {project.address}
+          </span>
+          <br />
+          <span>
+            <FcCurrencyExchange />{" "}
+            <b>
+              Giá :{" "}
+              <span style={{ color: "#dc3545" }}>{project.price} VNĐ</span>
+            </b>
+          </span>
+          <br />
+          <span>
+            <b>
+              <FcHome /> Diện tích :
+            </b>{" "}
+            {project.area} m <sup>2</sup>
+          </span>
+          <p className="des-content">{configData(project.body[0])[2]}</p>
+        </Card.Body>
+      </Card>
+    );
+  });
 
   return (
     <>
       <div className="project-detail">
-        <MenuSide />
         <SlideShow
           imgs={project.introImg}
           maps={project.maps}
           video={project.video}
         />
+
         <div className="project-detail-header d-flex justify-content-between ">
           <div>
             <h2>{project.name}</h2>
             <h5>{project.address}</h5>
           </div>
           <div>
-            <h6 style={{ color: "red" }}>Giá bán: {project.price} Triệu VNĐ</h6>
-            <h6>Diện tích : {project.area} mét vuông</h6>
+            <h6 style={{ color: "red" }}>Giá bán: {project.price} VNĐ</h6>
+            <h6>
+              Diện tích : {project.area} m <sup>2</sup>
+            </h6>
           </div>
         </div>
 
-        <div className="d-flex justify-content-between body-project-detail">
-          <div className="col-2">
-            <MenuSide />
-          </div>
-          <div className="col-7 uncolum">
-            <div className="content-project-data" id="descriptions">
-              <h3>Tổng quan</h3>
-              <p>{project.descriptions}</p>
-              <img src={project.descriptionsImg} alt="" />
-            </div>
-            <div className="content-project-data" id="location">
-              <h3>Vị trí</h3>
-              <p>{project.location}</p>
-              <img src={project.locationImg} alt="" />
-            </div>
-            <div className="content-project-data" id="utilities">
-              <h3>Tiện ích</h3>
-              <p>{project.utilities}</p>
-              <img src={project.utilitiesImg} alt="" />
-            </div>
-            <div className="content-project-data" id="ground">
-              <h3>Mặt bằng</h3>
-              <p>{project.ground}</p>
-              <img src={project.groundImg} alt="" />
-            </div>
-            <div className="content-project-data" id="policy">
-              <h3>Chính sách bán hàng</h3>
-              <p>{project.policy}</p>
-              <img src={project.policyImg} alt="" />
-            </div>
+        <div className="d-flex justify-content-center body-project-detail">
+          <div className="col-8 uncolum">
+            <ListGroup horizontal className="menu-project-body">
+              {menuList}
+            </ListGroup>
+            {viewBody}
           </div>
           <div className="col-3 uncolum2">
             <ContractForm />
           </div>
         </div>
       </div>
+
+      <h3 className="mini-h2 ">Dự án liên quan</h3>
+      <CardDeck className="project-mini">{miniProject}</CardDeck>
+
       <CallForm phone={props.local.phonenumber1} />
     </>
   );

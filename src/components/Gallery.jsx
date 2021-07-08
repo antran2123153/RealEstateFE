@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { configData } from "../untils/functions";
 
 export default function Gallery(props) {
   const projects = props.projects;
@@ -8,7 +9,7 @@ export default function Gallery(props) {
     const i = "gallery-item gallery-item-" + (index + 1).toString();
     return (
       <div className={i} key={project._id}>
-        <Link to={"/project/" + project._id}>
+        <Link to={"/project/" + project.name}>
           <img
             src={project.mainImg}
             className="gallery-img"
@@ -16,7 +17,7 @@ export default function Gallery(props) {
           ></img>
         </Link>
         <div className="title-gallery-item">
-          <Link to={"/project/" + project._id}>
+          <Link to={"/project/" + project.name}>
             <h4>{project.name}</h4>
           </Link>
           <span>
@@ -27,9 +28,7 @@ export default function Gallery(props) {
             <FcCurrencyExchange />{" "}
             <b>
               Giá :{" "}
-              <span style={{ color: "#dc3545" }}>
-                {project.price} triệu VNĐ
-              </span>
+              <span style={{ color: "#dc3545" }}>{project.price} VNĐ</span>
             </b>
           </span>
           <br />
@@ -37,9 +36,11 @@ export default function Gallery(props) {
             <b>
               <FcHome /> Diện tích :
             </b>{" "}
-            {project.area} mét vuông
+            {project.area} m <sup>2</sup>
           </span>
-          {index === 0 && <p className="des-content">{project.descriptions}</p>}
+          {index === 0 && (
+            <p className="des-content">{configData(project.body[0])[2]}</p>
+          )}
         </div>
       </div>
     );

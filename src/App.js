@@ -3,7 +3,6 @@ import {
   Home,
   Navigation,
   Footer,
-  FooterGallery,
   ListProject,
   Contract,
   ProjectDetail,
@@ -67,7 +66,6 @@ class App extends Component {
           />
           <Route exact path="/admin" component={Admin} />
         </Switch>
-        <FooterGallery local={local} />
         <Footer local={local} />
       </Router>
     );
