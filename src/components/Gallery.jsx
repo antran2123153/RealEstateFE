@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { configData } from "../untils/functions";
+import { configDataNewline } from "../untils/functions";
 
 export default function Gallery(props) {
   const projects = props.projects;
@@ -39,7 +39,9 @@ export default function Gallery(props) {
             {project.area} m <sup>2</sup>
           </span>
           {index === 0 && (
-            <p className="des-content">{configData(project.body[0])[2]}</p>
+            <p className="des-content">
+              {configDataNewline(project.body)[2].substring(5)}
+            </p>
           )}
         </div>
       </div>

@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import { FcPositiveDynamic, FcLandscape, FcSearch } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { configData } from "../untils/functions";
+import { sortByPri, configDataNewline } from "../untils/functions";
 
 class ListProject extends Component {
   state = {
@@ -30,17 +30,16 @@ class ListProject extends Component {
     if (this.state.searchString === "") {
       projects = this.props.projects;
     } else {
-      projects = this.props.projects.filter(
-        (project) =>
-          project.name
-            .toLowerCase()
-            .includes(this.state.searchString.toLowerCase()) ||
-          project.description
-            .toLowerCase()
-            .includes(this.state.searchString.toLowerCase())
+      projects = this.props.projects.filter((project) =>
+        project.name
+          .toLowerCase()
+          .includes(this.state.searchString.toLowerCase())
       );
     }
-    projects = projects.slice(this.state.page * 5, this.state.page * 5 + 5);
+    projects = projects.sort(sortByPri);
+
+    let end = size < this.state.page * 5 + 5 ? size : this.state.page * 5 + 5;
+    projects = projects.slice(this.state.page * 5, end);
 
     const pagina = [];
     for (let number = 0; number < size / 5; number++) {
@@ -54,8 +53,8 @@ class ListProject extends Component {
         </Pagination.Item>
       );
     }
-    const imgs = this.props.local.rightSideImg;
     const viewProjects = projects.map((project) => {
+      console.log(project);
       return (
         <div className="card" key={project._id}>
           <img src={project.mainImg} alt={project.name} />
@@ -70,9 +69,10 @@ class ListProject extends Component {
             <br />
             <span>
               <FcLandscape /> Diện tích : {project.area} m <sup>2</sup> -- Địa
-              chỉ : {project.address}
             </span>
-            <p className="des-content">{configData(project.body[0])[2]}</p>
+            <p className="des-content">
+              {configDataNewline(project.body)[2].substring(5)}
+            </p>
             <br />
             <Button className="outline-info" variant="warning">
               <Link to={"/project/" + project.name}>Chi tiết</Link>
@@ -89,6 +89,7 @@ class ListProject extends Component {
         </div>
       );
     });
+    const imgs = this.props.local.rightSideImg;
     const viewImgs = imgs.map((img) => {
       return <img src={img} className="img-view-right" alt="" />;
     });

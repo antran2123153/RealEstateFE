@@ -17,7 +17,7 @@ class ProjectItem extends Component {
         <td>{project.name}</td>
         <td>{project.price}</td>
         <td>{project.address}</td>
-        <td>{project.state}</td>
+        <td>{project.priority}</td>
         <td className="item-food-button">
           <Button
             variant="warning"

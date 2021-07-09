@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { FcFilmReel, FcGallery, FcLandscape } from "react-icons/fc";
+import { configDataNewline } from "../../untils/functions";
 
 class slideShow extends Component {
   state = {
@@ -17,7 +18,7 @@ class slideShow extends Component {
   };
 
   render() {
-    const imgs = this.props.imgs;
+    const imgs = configDataNewline(this.props.imgs);
     const listImg = imgs.map((img, index) => {
       return (
         <img

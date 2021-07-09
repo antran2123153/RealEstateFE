@@ -1,10 +1,12 @@
-function arrayRotate(arr) {
-  arr.push(arr.shift());
-  return arr;
+function configDataBody(str) {
+  const array = str.split("\n=====\n");
+  return array;
 }
 
-function configData(str) {
-  const array = str.split("\n||");
+function configDataNewline(str) {
+  console.log(str);
+  const array = str.split("\n");
+  console.log(array);
   return array;
 }
 
@@ -17,4 +19,4 @@ function sortByPri(a, b) {
   return 0;
 }
 
-export { arrayRotate, configData, sortByPri };
+export { configDataBody, sortByPri, configDataNewline };

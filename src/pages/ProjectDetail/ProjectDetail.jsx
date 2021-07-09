@@ -3,7 +3,7 @@ import SlideShow from "./SlideShow";
 import ContractForm from "./ContractForm";
 import CallForm from "./CallForm";
 import { ListGroup, Card, CardDeck } from "react-bootstrap";
-import { configData } from "../../untils/functions";
+import { configDataBody, configDataNewline } from "../../untils/functions";
 import { Link } from "react-router-dom";
 import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 
@@ -12,17 +12,20 @@ export default function ProjectDetail(props) {
   const name = location.pathname.slice(9);
   const project = props.projects.find((item) => item.name === name);
 
-  let viewBody = project.body.map((bodyItem) => {
-    const body = configData(bodyItem);
+  const DataBody = configDataBody(project.body);
+  const viewBody = DataBody.map((bodyItem) => {
+    const body = configDataNewline(bodyItem);
     let viewBodyItem = body.map((item, index) => {
       if (index === 0) {
         return <></>;
-      } else if (index === 1) {
-        return <h3 key={index}>{item}</h3>;
-      } else if (item.substring(0, 4) === "http") {
-        return <img key={index} src={item} alt="" />;
+      } else if (item.substring(0, 3) === "h2:") {
+        return <h3 key={index}>{item.substring(3)}</h3>;
+      } else if (item.substring(0, 3) === "h3:") {
+        return <h4 key={index}>{item.substring(3)}</h4>;
+      } else if (item.substring(0, 5) === "link:") {
+        return <img key={index} src={item.substring(5)} alt="" />;
       } else {
-        return <p key={index}>{item}</p>;
+        return <p key={index}>{item.substring(5)}</p>;
       }
     });
     return (
@@ -32,18 +35,18 @@ export default function ProjectDetail(props) {
     );
   });
 
-  let menuList = project.body.map((bodyItem, index) => {
-    const body = configData(bodyItem);
+  let menuList = DataBody.map((bodyItem, index) => {
+    const body = configDataNewline(bodyItem);
     return (
       <ListGroup.Item key={index} action href={"#" + body[0]}>
-        {body[1]}
+        {body[1].substring(3)}
       </ListGroup.Item>
     );
   });
 
   let miniProject = props.projects.slice(0, 4).map((project, index) => {
     return (
-      <Card>
+      <Card key={index}>
         <Card.Img variant="top" src={project.mainImg} />
         <Card.Body>
           <Link to={"/project/" + project.name}>
@@ -67,7 +70,7 @@ export default function ProjectDetail(props) {
             </b>{" "}
             {project.area} m <sup>2</sup>
           </span>
-          <p className="des-content">{configData(project.body[0])[2]}</p>
+          <p className="des-content"></p>
         </Card.Body>
       </Card>
     );

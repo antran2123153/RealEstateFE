@@ -1,5 +1,6 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import TopPageButton from "../components/TopPageButton";
 import Home from "../pages/Home";
 import ListProject from "../pages/ListProject";
 import ProjectDetail from "../pages/ProjectDetail/ProjectDetail";
@@ -18,4 +19,5 @@ export {
   Loading,
   Admin,
   Login,
+  TopPageButton,
 };

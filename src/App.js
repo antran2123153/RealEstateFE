@@ -9,6 +9,7 @@ import {
   Loading,
   Admin,
   Login,
+  TopPageButton,
 } from "./untils";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./css/index.css";
@@ -66,6 +67,7 @@ class App extends Component {
           />
           <Route exact path="/admin" component={Admin} />
         </Switch>
+        <TopPageButton />
         <Footer local={local} />
       </Router>
     );

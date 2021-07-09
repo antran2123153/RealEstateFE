@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Container, Button } from "react-bootstrap";
+import { Table, Container, Button, Tabs, Tab } from "react-bootstrap";
 import axios from "../axios";
 import ProjectItem from "./ProjectItem";
 import LocalManager from "./LocalManager";
@@ -7,7 +7,7 @@ import Change from "./Change";
 import { Redirect } from "react-router-dom";
 import { Loading } from "../untils";
 
-class AccountManager extends Component {
+class Admin extends Component {
   state = {
     projects: [],
     isAdd: false,
@@ -117,43 +117,55 @@ class AccountManager extends Component {
           />
         )}
 
-        <h2 className="margintop">DANH SÁCH ĐĂNG KÝ CỦA KHÁCH HÀNG</h2>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Tên khách hàng</th>
-              <th>Số điện thoại</th>
-              <th>Lời nhắn</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>{listUser}</tbody>
-        </Table>
+        <Tabs defaultActiveKey="khachhang" className="uncontrolled-tab-example">
+          <Tab eventKey="khachhang" title="Khách hàng đăng ký">
+            <h2 className="margintop">DANH SÁCH ĐĂNG KÝ CỦA KHÁCH HÀNG</h2>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tên khách hàng</th>
+                  <th>Số điện thoại</th>
+                  <th>Lời nhắn</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>{listUser}</tbody>
+            </Table>
+          </Tab>
 
-        <h2 className="margintop">DANH SÁCH DỰ ÁN</h2>
-        <Button variant="primary" className="mb-3 mt-3" onClick={this.clickAdd}>
-          Thêm dự án mới
-        </Button>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Tên dự án</th>
-              <th>Giá</th>
-              <th>Địa chỉ</th>
-              <th>Trạng thái</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>{listProjects}</tbody>
-        </Table>
+          <Tab eventKey="duan" title="Quản lý dự án">
+            <h2 className="margintop">DANH SÁCH DỰ ÁN</h2>
+            <Button
+              variant="primary"
+              className="mb-3 mt-3"
+              onClick={this.clickAdd}
+            >
+              Thêm dự án mới
+            </Button>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tên dự án</th>
+                  <th>Giá</th>
+                  <th>Địa chỉ</th>
+                  <th>Độ ưu tiên</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>{listProjects}</tbody>
+            </Table>
+          </Tab>
 
-        <h2 className="margintop">THÔNG TIN CỤC BỘ TRANG WEB</h2>
-        <LocalManager local={local} />
+          <Tab eventKey="local" title="Thông tin cục bộ">
+            <h2 className="margintop">THÔNG TIN CỤC BỘ TRANG WEB</h2>
+            <LocalManager local={local} />
+          </Tab>
+        </Tabs>
       </Container>
     );
   }
 }
 
-export default AccountManager;
+export default Admin;

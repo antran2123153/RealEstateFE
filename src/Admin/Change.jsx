@@ -5,11 +5,7 @@ import axios from "../axios";
 class Change extends Component {
   state = {
     mainImg: "",
-    introImg1: "",
-    introImg2: "",
-    introImg3: "",
-    introImg4: "",
-    introImg5: "",
+    introImg: "",
     date: "",
     name: "",
     price: "",
@@ -17,17 +13,7 @@ class Change extends Component {
     video: "",
     area: "",
     address: "",
-    descriptions: "",
-    location: "",
-    utilities: "",
-    ground: "",
-    policy: "",
-    descriptionsImg: "",
-    locationImg: "",
-    utilitiesImg: "",
-    groundImg: "",
-    policyImg: "",
-    state: "",
+    body: "",
   };
 
   UNSAFE_componentWillMount() {
@@ -43,22 +29,9 @@ class Change extends Component {
         video: project.video,
         area: project.area,
         address: project.address,
-        introImg1: project.introImg[0],
-        introImg2: project.introImg[1],
-        introImg3: project.introImg[2],
-        introImg4: project.introImg[3],
-        introImg5: project.introImg[4],
-        descriptions: project.descriptions,
-        location: project.location,
-        utilities: project.utilities,
-        ground: project.ground,
-        policy: project.policy,
-        descriptionsImg: project.descriptionsImg,
-        locationImg: project.locationImg,
-        utilitiesImg: project.utilitiesImg,
-        groundImg: project.groundImg,
-        policyImg: project.policyImg,
-        state: project.state,
+        introImg: project.introImg,
+        body: project.body,
+        priority: project.priority,
       });
     }
   }
@@ -73,13 +46,6 @@ class Change extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    let introImg = [];
-    if (this.state.introImg1 !== "") introImg.push(this.state.introImg1);
-    if (this.state.introImg2 !== "") introImg.push(this.state.introImg2);
-    if (this.state.introImg3 !== "") introImg.push(this.state.introImg3);
-    if (this.state.introImg4 !== "") introImg.push(this.state.introImg4);
-    if (this.state.introImg5 !== "") introImg.push(this.state.introImg5);
-
     if (this.props.project)
       await axios.post(`/api/project/update`, {
         id: this.props.project._id,
@@ -91,18 +57,8 @@ class Change extends Component {
         video: this.state.video,
         area: this.state.area,
         address: this.state.address,
-        introImg: introImg,
-        descriptions: this.state.descriptions,
-        location: this.state.location,
-        utilities: this.state.utilities,
-        ground: this.state.ground,
-        policy: this.state.policy,
-        descriptionsImg: this.state.descriptionsImg,
-        locationImg: this.state.locationImg,
-        utilitiesImg: this.state.utilitiesImg,
-        groundImg: this.state.groundImg,
-        policyImg: this.state.policyImg,
-        state: this.state.state,
+        introImg: this.state.introImg,
+        body: this.state.body,
       });
     else {
       await axios.post(`/api/project/add`, {
@@ -114,21 +70,10 @@ class Change extends Component {
         video: this.state.video,
         area: this.state.area,
         address: this.state.address,
-        introImg: introImg,
-        descriptions: this.state.descriptions,
-        location: this.state.location,
-        utilities: this.state.utilities,
-        ground: this.state.ground,
-        policy: this.state.policy,
-        descriptionsImg: this.state.descriptionsImg,
-        locationImg: this.state.locationImg,
-        utilitiesImg: this.state.utilitiesImg,
-        groundImg: this.state.groundImg,
-        policyImg: this.state.policyImg,
-        state: this.state.state,
+        introImg: this.state.introImg,
+        body: this.state.body,
       });
     }
-
     this.props.onCance();
   };
 
@@ -209,136 +154,47 @@ class Change extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Link ảnh ở slide giới thiệu đầu - 1</Form.Label>
+            <Form.Label>Link ảnh ở slide giới thiệu</Form.Label>
             <Form.Control
               type="text"
-              name="introImg1"
-              value={this.state.introImg1}
+              style={{ height: "150px" }}
+              as="textarea"
+              placeholder="Mỗi link ảnh nằm ở các dòng riêng"
+              name="introImg"
+              value={this.state.introImg}
               onChange={this.handleInputChange}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Link ảnh ở slide giới thiệu đầu - 2</Form.Label>
+            <Form.Label>Nội dung dự án</Form.Label>
             <Form.Control
-              type="text"
-              name="introImg2"
-              value={this.state.introImg2}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Link ảnh ở slide giới thiệu đầu - 3</Form.Label>
-            <Form.Control
-              type="text"
-              name="introImg3"
-              value={this.state.introImg3}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Link ảnh ở slide giới thiệu đầu - 4</Form.Label>
-            <Form.Control
-              type="text"
-              name="introImg4"
-              value={this.state.introImg4}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Link ảnh ở slide giới thiệu đầu - 5</Form.Label>
-            <Form.Control
-              type="text"
-              name="introImg5"
-              value={this.state.introImg5}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Mô tả tổng quan dự án</Form.Label>
-            <Form.Control
+              style={{ height: "500px" }}
               type="text"
               as="textarea"
-              name="descriptions"
-              value={this.state.descriptions}
-              onChange={this.handleInputChange}
-            />
-            <Form.Control
-              type="text"
-              name="descriptionsImg"
-              value={this.state.descriptionsImg}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Mô tả vị trí dự án</Form.Label>
-            <Form.Control
-              type="text"
-              as="textarea"
-              name="location"
-              value={this.state.location}
-              onChange={this.handleInputChange}
-            />
-            <Form.Control
-              type="text"
-              name="locationImg"
-              value={this.state.locationImg}
+              placeholder="h2:Tên tiêu đề chính
+<id riêng>
+h3:<Tên tiêu đề nhỏ>
+link:<link ảnh>
+body:<nội dung>
+=====<sử dụng 5 dấu = để ngăn cách các nội dung chính>
+h2:Tên tiêu đề chính
+h3:<Tên tiêu đề nhỏ>
+link:<link ảnh>
+body:<nội dung>
+......
+              "
+              name="body"
+              value={this.state.body}
               onChange={this.handleInputChange}
             />
           </Form.Group>
+
           <Form.Group>
-            <Form.Label>Mô tả tiện ích dự án</Form.Label>
+            <Form.Label>Độ ưu tiên xuất hiện của dự án</Form.Label>
             <Form.Control
-              type="text"
-              as="textarea"
-              name="utilities"
-              value={this.state.utilities}
-              onChange={this.handleInputChange}
-            />
-            <Form.Control
-              type="text"
-              name="utilitiesImg"
-              value={this.state.utilitiesImg}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Mô tả mặt bằng dự án</Form.Label>
-            <Form.Control
-              type="text"
-              as="textarea"
-              name="ground"
-              value={this.state.ground}
-              onChange={this.handleInputChange}
-            />
-            <Form.Control
-              type="text"
-              name="groundImg"
-              value={this.state.groundImg}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Mô tả chính sách bán hàng</Form.Label>
-            <Form.Control
-              as="textarea"
-              type="text"
-              name="policy"
-              value={this.state.policy}
-              onChange={this.handleInputChange}
-            />
-            <Form.Control
-              type="text"
-              name="policyImg"
-              value={this.state.policyImg}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Trạng thái</Form.Label>
-            <Form.Control
-              type="text"
-              name="state"
-              value={this.state.state}
+              type="number"
+              name="priority"
+              value={this.state.priority}
               onChange={this.handleInputChange}
             />
           </Form.Group>

@@ -7,6 +7,13 @@ a:hover {
   color: rgb(82, 81, 81);
 }
 
+.top-page-bt {
+  position: fixed;
+  bottom: 60px;
+  right: 10px;
+  z-index: 10;
+}
+
 .margintop {
   margin-top: 70px;
 }
@@ -611,6 +618,18 @@ footer .container .noi-dung.about p {
   text-align: center;
   padding-top: 20px;
 }
+
+.uncontrolled-tab-example {
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 58px;
+  border: none;
+  background-color: #eeeeee;
+  z-index: 1;
+  color: #111;
+}
+
 @media all and (max-width: 800px) {
   .gallery {
     display: inline-block;
@@ -677,19 +696,7 @@ footer .container .noi-dung.about p {
     margin: 0;
     padding: 0;
   }
-  .body-project-detail .list-group {
-    display: none;
-  }
-  .list-group {
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0;
-    top: 100px;
-    font-size: 7pt;
-    width: 79px;
-    padding: 0;
-    z-index: 12;
-  }
+
   .content-project-data img {
     width: 100%;
     margin-left: 0;
@@ -704,6 +711,7 @@ footer .container .noi-dung.about p {
   .uncolum2 {
     width: 100%;
   }
+
   .project-detail-header {
     width: 100%;
     padding: 10px;
@@ -779,5 +787,17 @@ footer .container .noi-dung.about p {
   ul {
     padding: 0;
     margin: 0;
+  }
+  .mini-h2 {
+    margin-top: 20px;
+  }
+  .project-mini {
+    display: block;
+  }
+  .project-mini .card {
+    width: auto;
+  }
+  .contract-form-project {
+    margin: 20px 5%;
   }
 }
