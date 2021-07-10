@@ -14,6 +14,7 @@ class Change extends Component {
     area: "",
     address: "",
     body: "",
+    priority: "",
   };
 
   UNSAFE_componentWillMount() {
@@ -59,6 +60,7 @@ class Change extends Component {
         address: this.state.address,
         introImg: this.state.introImg,
         body: this.state.body,
+        priority: this.state.priority,
       });
     else {
       await axios.post(`/api/project/add`, {
@@ -72,6 +74,7 @@ class Change extends Component {
         address: this.state.address,
         introImg: this.state.introImg,
         body: this.state.body,
+        priority: this.state.priority,
       });
     }
     this.props.onCance();
