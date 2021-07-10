@@ -1,7 +1,6 @@
 import { Container, Button } from "react-bootstrap";
 import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { configDataNewline } from "../untils/functions";
 
 export default function Projects(props) {
   const projects = props.projects.slice(0, 5);
@@ -32,9 +31,7 @@ export default function Projects(props) {
             </b>{" "}
             {project.area} m <sup>2</sup>
           </span>
-          <p className="des-content">
-            {configDataNewline(project.body)[2].substring(5)}
-          </p>
+          <p className="des-content">{project.description}</p>
           <br />
           <Button className="outline-info" variant="warning">
             <Link to={"/project/" + project.name}>Chi tiết</Link>

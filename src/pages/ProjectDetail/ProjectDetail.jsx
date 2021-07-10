@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
+import React, { Fragment as div } from "react";
 import SlideShow from "./SlideShow";
 import ContractForm from "./ContractForm";
 import CallForm from "./CallForm";
 import { ListGroup, Card, CardDeck } from "react-bootstrap";
-import { configDataBody, configDataNewline } from "../../untils/functions";
 import { Link } from "react-router-dom";
 import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 
@@ -12,39 +12,26 @@ export default function ProjectDetail(props) {
   const name = location.pathname.slice(9);
   const project = props.projects.find((item) => item.name === name);
 
-  const DataBody = configDataBody(project.body);
-  const viewBody = DataBody.map((bodyItem) => {
-    const body = configDataNewline(bodyItem);
-    let viewBodyItem = body.map((item, index) => {
-      if (index === 0) {
-        return <></>;
-      } else if (item.substring(0, 3) === "h2:") {
-        return <h3 key={index}>{item.substring(3)}</h3>;
-      } else if (item.substring(0, 3) === "h3:") {
-        return <h4 key={index}>{item.substring(3)}</h4>;
-      } else if (item.substring(0, 5) === "link:") {
-        return <img key={index} src={item.substring(5)} alt="" />;
-      } else {
-        return <p key={index}>{item.substring(5)}</p>;
-      }
-    });
+  const viewBody = project.body.map((item) => {
     return (
-      <div className="content-project-data" id={body[0]}>
-        {viewBodyItem}
+      <div className="content-project-data" id={item.id}>
+        <h2 style={{ textAlign: "center", padding: "50px", fontSize: "27pt" }}>
+          {item.header}
+        </h2>
+        <div dangerouslySetInnerHTML={{ __html: item.content }}></div>
       </div>
     );
   });
 
-  let menuList = DataBody.map((bodyItem, index) => {
-    const body = configDataNewline(bodyItem);
+  let menuList = project.body.map((item, index) => {
     return (
       <ListGroup.Item
         key={index}
         action
-        href={"#" + body[0]}
+        href={"#" + item.id}
         className="sub-text"
       >
-        {body[1].substring(3)}
+        {item.header}
       </ListGroup.Item>
     );
   });

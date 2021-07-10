@@ -566,8 +566,8 @@ footer .container .noi-dung.about p {
   position: absolute;
   top: 100px;
   z-index: 3;
-  left: 10%;
-  width: 80%;
+  left: 2%;
+  width: 96%;
   height: auto;
   border: solid 1px;
   background-color: white;
@@ -576,11 +576,6 @@ footer .container .noi-dung.about p {
 
 .add-project input {
   margin-bottom: 10px;
-}
-
-.add-project button {
-  margin: 20px 50px;
-  padding: 10px 30px;
 }
 
 .uncolum img {
@@ -628,6 +623,12 @@ footer .container .noi-dung.about p {
   background-color: #eeeeee;
   z-index: 1;
   color: #111;
+}
+
+.form-group-body-content {
+  border: solid rgb(185, 185, 185) 0.01rem;
+  border-radius: 6px;
+  padding: 20px;
 }
 
 @media all and (max-width: 800px) {
@@ -697,18 +698,13 @@ footer .container .noi-dung.about p {
     padding: 0;
   }
 
-  .content-project-data img {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
   .uncolum {
     width: 100%;
   }
   .uncolum img {
     width: 100%;
     padding-bottom: 20px;
+    margin: 10px;
   }
   .uncolum2 {
     width: 100%;
@@ -721,9 +717,6 @@ footer .container .noi-dung.about p {
   }
   .project-detail-header h5 {
     font-size: 11pt;
-  }
-  .content-project-data h3 {
-    margin: 20px;
   }
   .content-project-data {
     padding: 10px 20px;

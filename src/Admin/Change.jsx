@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Row, Col, ButtonGroup } from "react-bootstrap";
 import axios from "../axios";
 
 class Change extends Component {
@@ -13,13 +13,13 @@ class Change extends Component {
     video: "",
     area: "",
     address: "",
-    body: "",
+    description: "",
+    body: [],
     priority: 0,
   };
 
   UNSAFE_componentWillMount() {
     const project = this.props.project;
-    console.log(project);
     if (project) {
       this.setState({
         name: project.name,
@@ -31,6 +31,7 @@ class Change extends Component {
         area: project.area,
         address: project.address,
         introImg: project.introImg,
+        description: project.description,
         body: project.body,
         priority: project.priority,
       });
@@ -43,6 +44,69 @@ class Change extends Component {
       ...this.state,
       [event.target.name]: value,
     });
+  };
+
+  handleInputChangeBody = (e, index) => {
+    const { name, value } = e.target;
+    let body = this.state.body;
+    body[index][name] = value;
+    this.setState({ body: body });
+  };
+
+  handleAddBody = () => {
+    let body = this.state.body;
+    body.push({ header: "", content: "" });
+    this.setState({ body: body });
+  };
+
+  handleDeleteBody = (index) => {
+    let body = this.state.body;
+    body.splice(index, 1);
+    this.setState({ body: body });
+  };
+
+  handleAddImg = (e, index) => {
+    let link = prompt("Nhập Link ảnh muốn chèn: ");
+    let body = this.state.body;
+    body[index].content +=
+      '\n<img src="' + link + '" alt ="" style="width:100%;margin:10px 0;"/>';
+    this.setState({ body: body });
+  };
+
+  handleAddVideo = (e, index) => {
+    let link = prompt("Nhập Link video muốn chèn: ");
+    let body = this.state.body;
+    body[index].content +=
+      '\n<iframe title="videos" class="ggmaps" src="' + link + '"></iframe>';
+    this.setState({ body: body });
+  };
+
+  handleAddText = (e, index) => {
+    let link = prompt("Nhập văn bản muốn chèn: ");
+    let body = this.state.body;
+    body[index].content += "\n<p>" + link + "</p>";
+    this.setState({ body: body });
+  };
+
+  handleAddHeader = (e, index) => {
+    let link = prompt("Nhập tiêu đề nhỏ muốn chèn: ");
+    let body = this.state.body;
+    body[index].content += "\n<h3>" + link + "</h3>";
+    this.setState({ body: body });
+  };
+
+  handleAddList = (e, index) => {
+    let body = this.state.body;
+    body[index].content +=
+      "\n<ul>\n\t<li></li>\n\t<li></li>\n\t<li></li>\n</ul>";
+    this.setState({ body: body });
+  };
+
+  handleAddBorder = (e, index) => {
+    let link = prompt("Nhập văn bản muốn in đậm: ");
+    let body = this.state.body;
+    body[index].content += "<b>" + link + "</b>";
+    this.setState({ body: body });
   };
 
   handleSubmit = async (e) => {
@@ -59,6 +123,7 @@ class Change extends Component {
         area: this.state.area,
         address: this.state.address,
         introImg: this.state.introImg,
+        description: this.state.description,
         body: this.state.body,
         priority: this.state.priority,
       });
@@ -73,6 +138,7 @@ class Change extends Component {
         area: this.state.area,
         address: this.state.address,
         introImg: this.state.introImg,
+        description: this.state.description,
         body: this.state.body,
         priority: this.state.priority,
       });
@@ -81,131 +147,245 @@ class Change extends Component {
   };
 
   render() {
+    const body = this.state.body;
+    const viewBody = body.map((itemBody, index) => {
+      return (
+        <Form.Group className="mt-5 form-group-body-content" key={index}>
+          <Row>
+            <Col>
+              <Form.Control
+                type="text"
+                name="header"
+                placeholder="Tiêu đề chính"
+                value={this.state.body[index].header}
+                onChange={(e) => this.handleInputChangeBody(e, index)}
+              />
+            </Col>
+            <Col>
+              <Form.Control
+                type="text"
+                name="id"
+                placeholder="Mã để phân biệt đoạn"
+                value={this.state.body[index].id}
+                onChange={(e) => this.handleInputChangeBody(e, index)}
+              />
+            </Col>
+          </Row>
+          <ButtonGroup aria-label="Basic example">
+            <Button
+              variant="outline-warning"
+              onClick={(e) => this.handleAddHeader(e, index)}
+            >
+              Thêm tiêu đề phụ
+            </Button>
+            <Button
+              variant="outline-dark"
+              onClick={(e) => this.handleAddText(e, index)}
+            >
+              Thêm văn bản
+            </Button>
+            <Button
+              variant="outline-primary"
+              onClick={(e) => this.handleAddImg(e, index)}
+            >
+              Thêm ảnh
+            </Button>
+            <Button
+              variant="outline-info"
+              onClick={(e) => this.handleAddVideo(e, index)}
+            >
+              Thêm video
+            </Button>
+            <Button
+              variant="outline-success"
+              onClick={(e) => this.handleAddList(e, index)}
+            >
+              Thêm danh sách
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={(e) => this.handleAddBorder(e, index)}
+            >
+              In đậm chữ
+            </Button>
+          </ButtonGroup>
+          <Form.Control
+            type="text"
+            as="textarea"
+            name="content"
+            value={this.state.body[index].content}
+            onChange={(e) => this.handleInputChangeBody(e, index)}
+            placeholder="Điền thông tin vào thẻ được tạo"
+            style={{ height: "400px" }}
+          />
+          <Button variant="success" onClick={this.handleAddBody}>
+            Thêm nội dung mới
+          </Button>{" "}
+          <Button variant="danger" onClick={() => this.handleDeleteBody(index)}>
+            Xóa mục nội dung này
+          </Button>
+        </Form.Group>
+      );
+    });
+
     return (
       <div className="opa-project">
         <Form className="add-project" onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label>Tên dự án</Form.Label>
-            <Form.Control
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Hình ảnh chính</Form.Label>
-            <Form.Control
-              type="text"
-              name="mainImg"
-              value={this.state.mainImg}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Ngày mở bán</Form.Label>
-            <Form.Control
-              type="text"
-              name="date"
-              value={this.state.date}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Giá bán</Form.Label>
-            <Form.Control
-              type="text"
-              name="price"
-              value={this.state.price}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Link google maps</Form.Label>
-            <Form.Control
-              type="text"
-              name="maps"
-              value={this.state.maps}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Link video demo</Form.Label>
-            <Form.Control
-              type="text"
-              name="video"
-              value={this.state.video}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Diện tích khu đất</Form.Label>
-            <Form.Control
-              type="text"
-              name="area"
-              value={this.state.area}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Địa chỉ</Form.Label>
-            <Form.Control
-              type="text"
-              name="address"
-              value={this.state.address}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Link ảnh ở slide giới thiệu</Form.Label>
-            <Form.Control
-              type="text"
-              style={{ height: "150px" }}
-              as="textarea"
-              placeholder="Mỗi link ảnh nằm ở các dòng riêng"
-              name="introImg"
-              value={this.state.introImg}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Nội dung dự án</Form.Label>
-            <Form.Control
-              style={{ height: "500px" }}
-              type="text"
-              as="textarea"
-              placeholder="h2:Tên tiêu đề chính
-<id riêng>
-h3:<Tên tiêu đề nhỏ>
-link:<link ảnh>
-body:<nội dung>
-=====<sử dụng 5 dấu = để ngăn cách các nội dung chính>
-h2:Tên tiêu đề chính
-h3:<Tên tiêu đề nhỏ>
-link:<link ảnh>
-body:<nội dung>
-......
-              "
-              name="body"
-              value={this.state.body}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
+          <Row>
+            <Col>
+              {" "}
+              <Form.Group>
+                <Form.Label>Tên dự án</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>Hình ảnh chính</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="mainImg"
+                  value={this.state.mainImg}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>Ngày mở bán</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="date"
+                  value={this.state.date}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Group>
+                <Form.Label>Giá bán</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="price"
+                  value={this.state.price}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>Link google maps</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="maps"
+                  value={this.state.maps}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>Link video demo</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="video"
+                  value={this.state.video}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Group>
+                <Form.Label>Diện tích khu đất</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="area"
+                  value={this.state.area}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>Địa chỉ</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="address"
+                  value={this.state.address}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>
+                  Loại dự án: (1 - Mới) (2 - Hot) (10 - Hot Nhất) (3 - Thường)
+                </Form.Label>
+                <Form.Control
+                  type="Number"
+                  name="priority"
+                  value={this.state.priority}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Group>
+                <Form.Label>Mô tả dự án</Form.Label>
+                <Form.Control
+                  type="text"
+                  as="textarea"
+                  name="description"
+                  style={{ height: "200px" }}
+                  value={this.state.description}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>Link ảnh ở slide giới thiệu</Form.Label>
+                <Form.Control
+                  type="text"
+                  as="textarea"
+                  name="introImg"
+                  placeholder="Mỗi link ảnh đặt trên mỗi dòng"
+                  style={{ height: "200px" }}
+                  value={this.state.introImg}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
 
-          <Form.Group>
-            <Form.Label>Độ ưu tiên xuất hiện của dự án</Form.Label>
-            <Form.Control
-              type="number"
-              name="priority"
-              value={this.state.priority}
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
+          {viewBody}
 
-          <Button variant="danger" onClick={this.props.onCance}>
-            Hủy
-          </Button>
-          <Button type="submit">Lưu</Button>
+          <div className="d-flex justify-content-around mt-4">
+            {this.state.body.length === 0 && (
+              <Button
+                type="submit"
+                variant="warning"
+                onClick={this.handleAddBody}
+              >
+                Thêm nội dung cho dự án
+              </Button>
+            )}
+            <Button variant="danger" onClick={this.props.onCance}>
+              Hủy
+            </Button>
+            <Button type="submit">Lưu</Button>
+          </div>
         </Form>
       </div>
     );

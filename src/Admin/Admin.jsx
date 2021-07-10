@@ -150,7 +150,7 @@ class Admin extends Component {
                   <th>Tên dự án</th>
                   <th>Giá</th>
                   <th>Địa chỉ</th>
-                  <th>Độ ưu tiên</th>
+                  <th>Loại dự án</th>
                   <th></th>
                 </tr>
               </thead>

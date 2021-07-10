@@ -1,6 +1,7 @@
-function configDataBody(str) {
-  const array = str.split("\n=====\n");
-  return array;
+function createElementFromHTML(htmlString) {
+  var div = document.createElement("div");
+  div.innerHTML = htmlString.trim();
+  return div.firstChild;
 }
 
 function configDataNewline(str) {
@@ -19,4 +20,4 @@ function sortByPri(a, b) {
   return 0;
 }
 
-export { configDataBody, sortByPri, configDataNewline };
+export { sortByPri, configDataNewline, createElementFromHTML };

@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import { FcPositiveDynamic, FcLandscape, FcSearch } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { sortByPri, configDataNewline } from "../untils/functions";
+import { sortByPri } from "../untils/functions";
 
 class ListProject extends Component {
   state = {
@@ -70,9 +70,7 @@ class ListProject extends Component {
             <span>
               <FcLandscape /> Diện tích : {project.area} m <sup>2</sup> -- Địa
             </span>
-            <p className="des-content">
-              {configDataNewline(project.body)[2].substring(5)}
-            </p>
+            <p className="des-content">{project.description}</p>
             <br />
             <Button className="outline-info" variant="warning">
               <Link to={"/project/" + project.name}>Chi tiết</Link>

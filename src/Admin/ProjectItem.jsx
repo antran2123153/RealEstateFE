@@ -17,7 +17,17 @@ class ProjectItem extends Component {
         <td>{project.name}</td>
         <td>{project.price}</td>
         <td>{project.address}</td>
-        <td>{project.priority}</td>
+        <td>
+          {project.priority === 1
+            ? "Mới"
+            : project.priority === 2
+            ? "Hot"
+            : project.priority === 3
+            ? "Thường"
+            : project.priority === 10
+            ? "Hot Nhất"
+            : "Không xác định"}
+        </td>
         <td className="item-food-button">
           <Button
             variant="warning"

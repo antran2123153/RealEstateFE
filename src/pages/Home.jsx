@@ -1,9 +1,10 @@
 import Gallery from "../components/Gallery";
 import Projects from "../components/Projects";
-import { sortByPri } from "../untils/functions";
 
 export default function Home(props) {
-  const hot = props.projects.sort(sortByPri).slice(0, 5);
+  let hot = props.projects.filter((project) => project.priority === 2);
+  const mostHot = props.projects.find((project) => project.priority === 10);
+  hot = [mostHot].concat(hot);
   return (
     <>
       <Gallery projects={hot} />
