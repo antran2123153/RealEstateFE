@@ -802,4 +802,7 @@ footer .container .noi-dung.about p {
   .contract-form-project {
     margin: 20px 5%;
   }
+  .sub-text {
+    font-size: 7pt;
+  }
 }

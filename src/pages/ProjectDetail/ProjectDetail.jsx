@@ -38,7 +38,12 @@ export default function ProjectDetail(props) {
   let menuList = DataBody.map((bodyItem, index) => {
     const body = configDataNewline(bodyItem);
     return (
-      <ListGroup.Item key={index} action href={"#" + body[0]}>
+      <ListGroup.Item
+        key={index}
+        action
+        href={"#" + body[0]}
+        className="sub-text"
+      >
         {body[1].substring(3)}
       </ListGroup.Item>
     );
