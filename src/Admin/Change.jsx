@@ -14,7 +14,7 @@ class Change extends Component {
     area: "",
     address: "",
     body: "",
-    priority: "",
+    priority: 0,
   };
 
   UNSAFE_componentWillMount() {
