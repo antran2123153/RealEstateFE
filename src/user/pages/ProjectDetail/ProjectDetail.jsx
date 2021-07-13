@@ -77,7 +77,9 @@ export default function ProjectDetail(props) {
             <h5>{project.address}</h5>
           </div>
           <div>
-            <h6 style={{ color: "red" }}>Giá bán: {project.price}</h6>
+            <h6 style={{ color: "red", fontSize: "25pt", fontWeight: "700" }}>
+              Giá bán: {project.price}
+            </h6>
             <h6>
               Diện tích : {project.area} m <sup>2</sup>
             </h6>
