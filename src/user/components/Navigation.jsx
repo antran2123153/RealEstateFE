@@ -13,18 +13,18 @@ export default function Navigation(props) {
           <Link to="/" className="navbar-item">
             Trang chủ
           </Link>
-          <Link to="/contract" className="navbar-item">
-            Liên hệ
-          </Link>
           <Link to="/projects" className="navbar-item">
             Danh sách dự án
           </Link>
-          <Link to="/" className="navbar-item">
+          <Link to="/contract" className="navbar-item">
+            Liên hệ
+          </Link>
+          {/* <Link to="/" className="navbar-item">
             Giới thiệu
           </Link>
           <Link to="/news" className="navbar-item">
             Tin tức
-          </Link>
+          </Link> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
