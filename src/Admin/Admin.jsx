@@ -5,7 +5,6 @@ import Manager from "./Manager";
 
 class Admin extends Component {
   render() {
-    console.log(123);
     return (
       <Router>
         <Switch>
