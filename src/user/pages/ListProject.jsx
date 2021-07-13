@@ -63,8 +63,8 @@ class ListProject extends Component {
               <h5>{project.name}</h5>
             </Link>
             <span>
-              <FcPositiveDynamic /> <b>Giá : {project.price} VNĐ</b> -- Ngày ra
-              mắt : {project.date}
+              <FcPositiveDynamic /> <b>Giá : {project.price}</b> -- Ngày ra mắt
+              : {project.date}
             </span>
             <br />
             <span>

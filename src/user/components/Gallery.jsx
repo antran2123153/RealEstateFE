@@ -26,8 +26,7 @@ export default function Gallery(props) {
           <span>
             <FcCurrencyExchange />{" "}
             <b>
-              Giá :{" "}
-              <span style={{ color: "#dc3545" }}>{project.price} VNĐ</span>
+              Giá : <span style={{ color: "#dc3545" }}>{project.price}</span>
             </b>
           </span>
           <br />

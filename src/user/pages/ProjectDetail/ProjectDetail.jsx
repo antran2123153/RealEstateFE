@@ -46,8 +46,7 @@ export default function ProjectDetail(props) {
           <span>
             <FcCurrencyExchange />{" "}
             <b>
-              Giá :{" "}
-              <span style={{ color: "#dc3545" }}>{project.price} VNĐ</span>
+              Giá : <span style={{ color: "#dc3545" }}>{project.price}</span>
             </b>
           </span>
           <br />
@@ -78,7 +77,7 @@ export default function ProjectDetail(props) {
             <h5>{project.address}</h5>
           </div>
           <div>
-            <h6 style={{ color: "red" }}>Giá bán: {project.price} VNĐ</h6>
+            <h6 style={{ color: "red" }}>Giá bán: {project.price}</h6>
             <h6>
               Diện tích : {project.area} m <sup>2</sup>
             </h6>
