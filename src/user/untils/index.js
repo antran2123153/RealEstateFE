@@ -6,8 +6,6 @@ import ListProject from "../pages/ListProject";
 import ProjectDetail from "../pages/ProjectDetail/ProjectDetail";
 import Contract from "../pages/Contract";
 import Loading from "../pages/Loading";
-import Admin from "../Admin/Admin";
-import Login from "../Admin/Login";
 
 export {
   Home,
@@ -17,7 +15,5 @@ export {
   Contract,
   ProjectDetail,
   Loading,
-  Admin,
-  Login,
   TopPageButton,
 };

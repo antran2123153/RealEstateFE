@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import { FcPositiveDynamic, FcLandscape, FcSearch } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { sortByPri } from "../untils/functions";
+import { sortByPri, configDataNewline } from "../untils/functions";
 
 class ListProject extends Component {
   state = {
@@ -77,7 +77,7 @@ class ListProject extends Component {
             </Button>{" "}
             <Button className="outline-info" variant="danger">
               <a
-                href={"tel:" + this.props.local.phonenumber1}
+                href={"tel:" + this.props.local.phonenumber}
                 style={{ color: "white" }}
               >
                 Gọi ngay
@@ -87,7 +87,7 @@ class ListProject extends Component {
         </div>
       );
     });
-    const imgs = this.props.local.rightSideImg;
+    const imgs = configDataNewline(this.props.local.rightSideImg);
     const viewImgs = imgs.map((img) => {
       return <img src={img} className="img-view-right" alt="" />;
     });

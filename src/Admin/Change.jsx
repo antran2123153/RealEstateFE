@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Row, Col, ButtonGroup } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import axios from "../axios";
 
 class Change extends Component {
@@ -65,50 +65,6 @@ class Change extends Component {
     this.setState({ body: body });
   };
 
-  handleAddImg = (e, index) => {
-    let link = prompt("Nhập Link ảnh muốn chèn: ");
-    let body = this.state.body;
-    body[index].content +=
-      '\n<img src="' + link + '" alt ="" style="width:100%;margin:10px 0;"/>';
-    this.setState({ body: body });
-  };
-
-  handleAddVideo = (e, index) => {
-    let link = prompt("Nhập Link video muốn chèn: ");
-    let body = this.state.body;
-    body[index].content +=
-      '\n<iframe title="videos" class="ggmaps" src="' + link + '"></iframe>';
-    this.setState({ body: body });
-  };
-
-  handleAddText = (e, index) => {
-    let link = prompt("Nhập văn bản muốn chèn: ");
-    let body = this.state.body;
-    body[index].content += "\n<p>" + link + "</p>";
-    this.setState({ body: body });
-  };
-
-  handleAddHeader = (e, index) => {
-    let link = prompt("Nhập tiêu đề nhỏ muốn chèn: ");
-    let body = this.state.body;
-    body[index].content += "\n<h3>" + link + "</h3>";
-    this.setState({ body: body });
-  };
-
-  handleAddList = (e, index) => {
-    let body = this.state.body;
-    body[index].content +=
-      "\n<ul>\n\t<li></li>\n\t<li></li>\n\t<li></li>\n</ul>";
-    this.setState({ body: body });
-  };
-
-  handleAddBorder = (e, index) => {
-    let link = prompt("Nhập văn bản muốn in đậm: ");
-    let body = this.state.body;
-    body[index].content += "<b>" + link + "</b>";
-    this.setState({ body: body });
-  };
-
   handleSubmit = async (e) => {
     e.preventDefault();
     if (this.props.project)
@@ -156,7 +112,7 @@ class Change extends Component {
               <Form.Control
                 type="text"
                 name="header"
-                placeholder="Tiêu đề chính"
+                placeholder="Tiêu đề"
                 value={this.state.body[index].header}
                 onChange={(e) => this.handleInputChangeBody(e, index)}
               />
@@ -171,44 +127,6 @@ class Change extends Component {
               />
             </Col>
           </Row>
-          <ButtonGroup aria-label="Basic example">
-            <Button
-              variant="outline-warning"
-              onClick={(e) => this.handleAddHeader(e, index)}
-            >
-              Thêm tiêu đề phụ
-            </Button>
-            <Button
-              variant="outline-dark"
-              onClick={(e) => this.handleAddText(e, index)}
-            >
-              Thêm văn bản
-            </Button>
-            <Button
-              variant="outline-primary"
-              onClick={(e) => this.handleAddImg(e, index)}
-            >
-              Thêm ảnh
-            </Button>
-            <Button
-              variant="outline-info"
-              onClick={(e) => this.handleAddVideo(e, index)}
-            >
-              Thêm video
-            </Button>
-            <Button
-              variant="outline-success"
-              onClick={(e) => this.handleAddList(e, index)}
-            >
-              Thêm danh sách
-            </Button>
-            <Button
-              variant="outline-secondary"
-              onClick={(e) => this.handleAddBorder(e, index)}
-            >
-              In đậm chữ
-            </Button>
-          </ButtonGroup>
           <Form.Control
             type="text"
             as="textarea"
@@ -216,7 +134,7 @@ class Change extends Component {
             value={this.state.body[index].content}
             onChange={(e) => this.handleInputChangeBody(e, index)}
             placeholder="Điền thông tin vào thẻ được tạo"
-            style={{ height: "400px" }}
+            style={{ height: "300px" }}
           />
           <Button variant="success" onClick={this.handleAddBody}>
             Thêm nội dung mới

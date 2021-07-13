@@ -1,5 +1,4 @@
-import { useLocation } from "react-router-dom";
-import React, { Fragment as div } from "react";
+import { useParams } from "react-router-dom";
 import SlideShow from "./SlideShow";
 import ContractForm from "./ContractForm";
 import CallForm from "./CallForm";
@@ -8,16 +7,12 @@ import { Link } from "react-router-dom";
 import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 
 export default function ProjectDetail(props) {
-  const location = useLocation();
-  const name = location.pathname.slice(9);
-  const project = props.projects.find((item) => item.name === name);
+  const param = useParams();
+  const project = props.projects.find((item) => item.name === param.name);
 
   const viewBody = project.body.map((item) => {
     return (
       <div className="content-project-data" id={item.id}>
-        <h2 style={{ textAlign: "center", padding: "50px", fontSize: "27pt" }}>
-          {item.header}
-        </h2>
         <div dangerouslySetInnerHTML={{ __html: item.content }}></div>
       </div>
     );
@@ -106,7 +101,7 @@ export default function ProjectDetail(props) {
       <h3 className="mini-h2 ">Dự án liên quan</h3>
       <CardDeck className="project-mini">{miniProject}</CardDeck>
 
-      <CallForm phone={props.local.phonenumber1} />
+      <CallForm phone={props.local.phonenumber} />
     </>
   );
 }

@@ -616,19 +616,29 @@ footer .container .noi-dung.about p {
 
 .uncontrolled-tab-example {
   width: 100%;
+  padding: 0 5%;
   position: -webkit-sticky;
   position: sticky;
-  top: 58px;
+  top: 0;
   border: none;
   background-color: #eeeeee;
   z-index: 1;
   color: #111;
+}
+.tab-content {
+  margin: 10px 30px;
 }
 
 .form-group-body-content {
   border: solid rgb(185, 185, 185) 0.01rem;
   border-radius: 6px;
   padding: 20px;
+}
+
+.margin-button {
+  display: flex;
+  margin: auto;
+  margin-top: 50px;
 }
 
 @media all and (max-width: 800px) {

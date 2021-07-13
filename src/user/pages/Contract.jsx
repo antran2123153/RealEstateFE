@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Card, Container } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
-import axios from "../axios";
+import axios from "../../axios";
 
 class Contract extends Component {
   state = {

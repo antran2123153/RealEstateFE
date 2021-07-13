@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { FcCallTransfer, FcBusinessman } from "react-icons/fc";
-import axios from "../../axios";
+import axios from "../../../axios";
 
 class ContractForm extends Component {
   state = {

@@ -75,12 +75,8 @@ export default function Footer(props) {
                 <i className="fa fa-phone" />
               </span>
               <p>
-                <a href={"tel:" + local.phonenumber1}>
-                  Số điện thoại: {local.phonenumber1}
-                </a>
-                <br />
-                <a href={"tel:" + local.phonenumber2}>
-                  Số điện thoại: {local.phonenumber2}
+                <a href={"tel:" + local.phonenumber}>
+                  Số điện thoại: {local.phonenumber}
                 </a>
               </p>
             </li>

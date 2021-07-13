@@ -42,7 +42,7 @@ class Login extends Component {
   };
 
   render() {
-    if (this.state.isLogin) {
+    if (this.state.isLogin || localStorage.getItem("token") !== null) {
       return <Redirect to="/admin" />;
     }
     return (

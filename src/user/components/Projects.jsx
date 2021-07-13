@@ -1,10 +1,11 @@
 import { Container, Button } from "react-bootstrap";
 import { FcCurrencyExchange, FcLandscape, FcHome } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { configDataNewline } from "../untils/functions";
 
 export default function Projects(props) {
   const projects = props.projects.slice(0, 5);
-  const imgs = props.local.rightSideImg;
+  const imgs = configDataNewline(props.local.rightSideImg);
   const viewProjects = projects.map((project) => {
     return (
       <div className="card" key={project._id}>
