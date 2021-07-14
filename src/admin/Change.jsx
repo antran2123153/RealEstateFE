@@ -112,7 +112,7 @@ class Change extends Component {
               <Form.Control
                 type="text"
                 name="header"
-                placeholder="Tiêu đề"
+                placeholder="Tiêu đề hiển thị trên menu nhỏ"
                 value={this.state.body[index].header}
                 onChange={(e) => this.handleInputChangeBody(e, index)}
               />
@@ -133,7 +133,7 @@ class Change extends Component {
             name="content"
             value={this.state.body[index].content}
             onChange={(e) => this.handleInputChangeBody(e, index)}
-            placeholder="Điền thông tin vào thẻ được tạo"
+            placeholder="Truy cập trang web https://wordhtml.com để nhập nội dung theo ý muốn, sau đó copy mã html vào đây"
             style={{ height: "300px" }}
           />
           <Button variant="success" onClick={this.handleAddBody}>
